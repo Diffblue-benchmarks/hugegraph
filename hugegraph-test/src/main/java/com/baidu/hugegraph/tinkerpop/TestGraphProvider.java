@@ -356,7 +356,12 @@ public class TestGraphProvider extends AbstractGraphProvider {
 
     public void clear() {
         for (TestGraph graph : this.graphs.values()) {
+try {
             graph.clearBackend();
+} catch (Throwable e) {
+    LOG.error("Error while clear graph '{}', graphs={}", graph, this.graphs, e);
+    throw e;
+}
         }
         for (TestGraph graph : this.graphs.values()) {
             try {
