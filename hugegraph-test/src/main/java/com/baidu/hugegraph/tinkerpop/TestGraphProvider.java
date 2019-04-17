@@ -355,6 +355,8 @@ public class TestGraphProvider extends AbstractGraphProvider {
     }
 
     public void clear() {
+try {
+
         for (TestGraph graph : this.graphs.values()) {
             graph.clearBackend();
         }
@@ -366,6 +368,10 @@ public class TestGraphProvider extends AbstractGraphProvider {
             }
         }
         this.graphs.clear();
+
+} catch (Throwable e) {
+    LOG.error("Error while clear graphs", e);
+}
     }
 
     @Watched
